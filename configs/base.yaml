@@ -1,0 +1,40 @@
+# Base configuration for Transfer Learning for Animal Sounds (YAMNet Project)
+
+project:
+  name: transfer_learning_for_animal_sounds
+  seed: 42
+  device: "cuda"  # use "cpu" if you don't have GPU access
+
+data:
+  gtzan_dir: "data/gtzan/"
+  esc50_dir: "data/esc50/"
+  sample_rate: 16000
+  segment_length: 1.0       # seconds
+  hop_length: 0.5           # seconds
+  num_classes: 10
+  save_embeddings_dir: "outputs/embeddings/"
+
+model:
+  yamnet_weights: "yamnet.pth"
+  embedding_dim: 1024
+  head_hidden: 256
+  dropout: 0.3
+
+train:
+  batch_size: 32
+  epochs: 20
+  lr: 1e-3
+  optimizer: "adam"
+  loss: "cross_entropy"
+  early_stopping_patience: 5
+
+experiments:
+  zero_shot:
+    train_dataset: "gtzan"
+    test_dataset: "esc50"
+  few_shot:
+    k_values: [5, 10, 20]
+  fine_tune:
+    unfreeze_layers: 3   # last 3 YAMNet blocks
+    lr: 1e-5
+    epochs: 10
