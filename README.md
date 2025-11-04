@@ -44,8 +44,7 @@ Macro F-1 Score is the macro average of --> 2x (precision x recall) / (precision
 - Highlights whether the model is biased (e.g., good on “bird” but bad on “frog”).
 
 Confusion Matrix: A full breakdown of which classes the model confuses with each other (rows = true classes, columns = predicted classes)
-- Can be used to diagnose what kind of mistakes the model does
-- 
+- Can be used to diagnose what kind of mistakes the model does.
 
 ## Workflow Summary
 1. Preprocessing the input audio files
